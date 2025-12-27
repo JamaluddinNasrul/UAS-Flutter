@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dimmah/notifications_page.dart';
 
 class CourseDetailPage extends StatefulWidget {
   final String courseTitle;
@@ -355,6 +356,13 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
       onTap: () {
         if (label == 'Home') {
           Navigator.of(context).popUntil((route) => route.isFirst);
+        } else if (label == 'Kelas Saya' && !isActive) {
+          Navigator.pop(context);
+        } else if (label == 'Notifikasi') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NotificationsPage()),
+          );
         }
       },
       child: Column(
