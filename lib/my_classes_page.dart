@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dimmah/notifications_page.dart';
+import 'package:dimmah/course_detail_page.dart';
 
 class MyClassesPage extends StatelessWidget {
   const MyClassesPage({super.key});
@@ -36,6 +37,7 @@ class MyClassesPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         children: [
           _buildClassItem(
+            context: context,
             imageUrl: 'https://via.placeholder.com/80/FFC107/FFFFFF?text=UI/UX',
             year: '2021/2',
             title: 'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA D4SM-42-03 [ADY]',
@@ -44,6 +46,7 @@ class MyClassesPage extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           _buildClassItem(
+            context: context,
             imageUrl: 'https://via.placeholder.com/80/B31B1B/FFFFFF?text=Pkn',
             year: '2021/2',
             title: 'KEWARGANEGARAAN D4SM-41-GAB1 [BBD], JUMAT 2',
@@ -52,6 +55,7 @@ class MyClassesPage extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           _buildClassItem(
+            context: context,
             imageUrl: 'https://via.placeholder.com/80/FFFFFF/000000?text=OS',
             year: '2021/2',
             title: 'SISTEM OPERASI D4SM-44-02 [DOS]',
@@ -60,6 +64,7 @@ class MyClassesPage extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           _buildClassItem(
+            context: context,
             imageUrl: 'https://via.placeholder.com/80/4DD0E1/FFFFFF?text=Mobile',
             year: '2021/2',
             title: 'PEMROGRAMAN PERANGKAT BERGERAK MULTIMEDIA D4SM-41-GAB1 [APJ]',
@@ -92,78 +97,89 @@ class MyClassesPage extends StatelessWidget {
   }
 
   Widget _buildClassItem({
+    required BuildContext context,
     required String imageUrl,
     required String year,
     required String title,
     required double progress,
     required String progressText,
   }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 90,
-          height: 90,
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            borderRadius: BorderRadius.circular(4),
-            image: DecorationImage(
-              image: NetworkImage(imageUrl),
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CourseDetailPage(courseTitle: title),
+          ),
+        );
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 90,
+            height: 90,
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(4),
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        const SizedBox(width: 15),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                year,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 11,
+          const SizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  year,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 11,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                  height: 1.2,
+                const SizedBox(height: 2),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    height: 1.2,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 15),
-              Container(
-                height: 8,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: FractionallySizedBox(
-                  widthFactor: progress,
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFB31B1B),
-                      borderRadius: BorderRadius.circular(4),
+                const SizedBox(height: 15),
+                Container(
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: FractionallySizedBox(
+                    widthFactor: progress,
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFB31B1B),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                progressText,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 11,
+                const SizedBox(height: 4),
+                Text(
+                  progressText,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 11,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

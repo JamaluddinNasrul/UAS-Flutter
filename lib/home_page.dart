@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dimmah/my_classes_page.dart';
 import 'package:dimmah/notifications_page.dart';
+import 'package:dimmah/course_detail_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -205,71 +206,90 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   // Class Progress Card
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // UI/UX Circular Icon (Simulated)
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage('https://via.placeholder.com/60/FFC107/FFFFFF?text=UI'),
-                              fit: BoxFit.cover,
-                            ),
-                            shape: BoxShape.rectangle,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CourseDetailPage(
+                            courseTitle: 'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA D4SM-42-03 [ADY]',
                           ),
                         ),
-                        const SizedBox(width: 15),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                '2021/2',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 11,
-                                ),
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.02),
+                            blurRadius: 5,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // UI/UX Circular Icon (Simulated)
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage('https://via.placeholder.com/60/FFC107/FFFFFF?text=UI'),
+                                fit: BoxFit.cover,
                               ),
-                              const Text(
-                                'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA D4SM-42-03 [ADY]',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.2,
+                              shape: BoxShape.rectangle,
+                            ),
+                          ),
+                          const SizedBox(width: 15),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  '2021/2',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 11,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 15),
-                              // Custom progress bar
-                              Container(
-                                height: 8,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(4),
+                                const Text(
+                                  'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA D4SM-42-03 [ADY]',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.2,
+                                  ),
                                 ),
-                                child: FractionallySizedBox(
-                                  widthFactor: 0.8,
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFB31B1B),
-                                      borderRadius: BorderRadius.circular(4),
+                                const SizedBox(height: 15),
+                                // Custom progress bar
+                                Container(
+                                  height: 8,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[200],
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 0.8,
+                                    alignment: Alignment.centerLeft,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFB31B1B),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 100), // Space for bottom nav
